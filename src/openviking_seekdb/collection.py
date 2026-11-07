@@ -1014,7 +1014,9 @@ class SeekDBCollection(ICollection):
             f"FROM {_quote(self.physical_name)} r WHERE {' AND '.join(clauses)} "
             "ORDER BY _ov_score DESC, r.`id` ASC LIMIT %s OFFSET %s"
         )
-        params.extend([text, limit, offset])
+        # SQL parameters are positional in textual order: the MATCH expression in
+        # SELECT precedes the MATCH expression in WHERE.
+        params = [text, *params, limit, offset]
         with self.client.transaction() as connection, connection.cursor() as cursor:
             cursor.execute(sql, params)
             rows = cursor.fetchall()

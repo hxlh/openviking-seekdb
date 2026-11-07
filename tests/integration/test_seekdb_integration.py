@@ -225,6 +225,7 @@ def test_full_collection_contract(adapter):
     keyword_hits = adapter.search_by_keywords(
         query="machine learning",
         fields=["content"],
+        filter=Eq("account_id", "acct-a"),
         limit=3,
         output_fields=["id", "content"],
     )
