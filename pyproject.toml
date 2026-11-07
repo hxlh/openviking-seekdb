@@ -1,0 +1,49 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "openviking-seekdb"
+version = "0.1.0"
+description = "OceanBase SeekDB vector-database adapter for OpenViking"
+readme = "README.md"
+requires-python = ">=3.10,<3.15"
+license = { text = "AGPL-3.0-only" }
+authors = [{ name = "OpenViking SeekDB contributors" }]
+dependencies = [
+  "PyMySQL>=1.1,<2",
+]
+
+[project.optional-dependencies]
+test = [
+  "openviking==0.5.3",
+  "pytest>=8.2",
+  "pytest-cov>=5",
+  "ruff>=0.11",
+]
+
+[project.urls]
+Homepage = "https://github.com/hxlh/openviking-seekdb"
+Repository = "https://github.com/hxlh/openviking-seekdb"
+Issues = "https://github.com/hxlh/openviking-seekdb/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/openviking_seekdb"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+markers = [
+  "integration: requires a live SeekDB server and SEEKDB_TEST_DATABASE",
+]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "SIM", "RUF"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]

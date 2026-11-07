@@ -1,0 +1,37 @@
+{
+  "storage": {
+    "vectordb": {
+      "backend": "openviking_seekdb.adapter.SeekDBCollectionAdapter",
+      "name": "context",
+      "index_name": "default",
+      "dimension": 1024,
+      "distance_metric": "cosine",
+      "sparse_weight": 0.3,
+      "custom_params": {
+        "host": "127.0.0.1",
+        "port": 2881,
+        "database": "openviking",
+        "user": "root",
+        "tenant": null,
+        "password_env": "SEEKDB_PASSWORD",
+        "charset": "utf8mb4",
+        "pool_size": 8,
+        "connect_timeout": 10,
+        "read_timeout": 60,
+        "write_timeout": 60,
+        "connect_retries": 3,
+        "refresh_after_write": true,
+        "vector_index_type": "hnsw",
+        "fulltext": true,
+        "fulltext_analyzer": "ik",
+        "hnsw_m": 16,
+        "hnsw_ef_construction": 200,
+        "hnsw_ef_search": 64,
+        "candidate_limit": 1000,
+        "sparse_max_dimension": 500000,
+        "sparse_max_nonzero": 4096,
+        "openviking_fulltext_compat": true
+      }
+    }
+  }
+}
