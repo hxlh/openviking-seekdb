@@ -1,4 +1,5 @@
 .git
+.github
 .venv
 __pycache__
 *.py[cod]
@@ -9,3 +10,5 @@ htmlcov
 dist
 build
 *.egg-info
+oom
+tests

@@ -313,8 +313,9 @@ podman build \
   -t openviking-seekdb:0.5.3 .
 ```
 
-如果基础镜像没有 `python`/`python3` 指向 OpenViking 解释器，请通过
-`PYTHON_BIN` build arg 指向正确路径。
+Dockerfile 默认通过基础镜像的 `pip --python` 将插件安装到 OpenViking 运行时虚拟环境
+`/app/.venv`，不会安装到系统 Python。若解释器路径不同，可同时覆盖 `PYTHON_BIN` 和
+`PIP_BIN` build args。
 
 ## 官方依据
 
